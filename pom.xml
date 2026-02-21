@@ -1,5 +1,6 @@
 
-!-- pom.xml -->
+
+cat > pom.xml <<'XML'
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -10,19 +11,14 @@
   <version>1.0.0</version>
   <packaging>jar</packaging>
   <name>my-app</name>
-  <description>A simple single-module Maven project</description>
 
   <properties>
-    <!-- Set your Java version -->
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>${maven.compiler.release}</maven.compiler.source>
-    <maven.compiler.target>${maven.compiler.release}</maven.compiler.target>
     <junit.jupiter.version>5.10.2</junit.jupiter.version>
   </properties>
 
   <dependencies>
-    <!-- Example dependency: JUnit 5 for unit tests -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
@@ -33,7 +29,6 @@
 
   <build>
     <plugins>
-      <!-- Ensure the right Java level is used -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -42,8 +37,6 @@
           <release>${maven.compiler.release}</release>
         </configuration>
       </plugin>
-
-      <!-- Run JUnit 5 tests -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -52,31 +45,8 @@
           <useModulePath>false</useModulePath>
         </configuration>
       </plugin>
-
-      <!-- Optionally create an executable JAR with dependencies -->
-      <!-- Remove this block if you don't need a fat JAR -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>3.7.1</version>
-        <configuration>
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-          <!-- Replace with your main class if you want an executable JAR -->
-          <!-- <archive><manifest><mainClass>com.example.Main</mainClass></manifest></archive> -->
-        </configuration>
-        <executions>
-          <execution>
-            <id>make-assembly</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 </project>
+XML
 
